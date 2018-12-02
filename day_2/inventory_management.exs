@@ -66,7 +66,8 @@ defmodule AdventOfCode.InventoryManagement do
   end
 
   defp standardize(ids)do
-    {filtered, _} = Enum.zip(ids)
+    {filtered, _} = ids
+    |> Enum.zip
     |> Enum.filter(fn (tuple) -> is_same?(tuple) end)
     |> Enum.unzip
 
