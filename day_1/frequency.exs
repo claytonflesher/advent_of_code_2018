@@ -36,11 +36,9 @@ defmodule AdventOfCode.Frequency do
   end
 end
 
-{:ok, file} = File.read("input.txt")
-file
-|> String.split("\n")
-|> List.delete_at(-1)
-|> Enum.map(fn (item) -> String.to_integer(item) end)
+File.stream!("input.txt")
+|> Enum.map(&String.trim_trailing/1)
+|> Enum.map(&String.to_integer/1)
 #|> AdventOfCode.Frequency.calculate_frequency
 |> AdventOfCode.Frequency.calculate_first_duplicate
 |> IO.inspect

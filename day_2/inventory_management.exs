@@ -86,11 +86,9 @@ defmodule AdventOfCode.InventoryManagement do
 
 end
 
-{:ok, file} = File.read("input.txt")
-file
-|> String.split("\n")
-|> List.delete_at(-1)
-|> Enum.map(&(String.graphemes(&1)))
+File.stream!("input.txt")
+|> Enum.map(&String.trim_trailing/1)
+|> Enum.map(&String.graphemes/1)
 #|> AdventOfCode.InventoryManagement.calculate_checksum
 |> AdventOfCode.InventoryManagement.find_prototypes
 |> IO.inspect
